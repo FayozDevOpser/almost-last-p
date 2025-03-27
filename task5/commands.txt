@@ -1,0 +1,2 @@
+ kubectl create deployment flask-application --image=visionindark/flask-app:prac-v1 -n p-fayoz --dry-run=client -o yaml > flask-application.yaml
+kubectl apply -f flask-application

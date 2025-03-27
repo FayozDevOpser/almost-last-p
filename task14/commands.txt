@@ -1,0 +1,14 @@
+kubectl create serviceaccount rbac-user --dry-run=client -o yaml > rbac-sa.yaml
+kubectl create role pod-cronjob-role \
+  --verb=list \
+  --resource=pods,cronjobs,jobs \
+  --dry-run=client -o yaml > rbac-role.yaml
+kubectl create rolebinding pod-cronjob-binding \
+  --role=pod-cronjob-role \
+  --serviceaccount=default:rbac-user \
+  --dry-run=client -o yaml > rbac-rolebinding.yaml
+
+
+kubectl apply -f rbac-sa.yaml
+kubectl apply -f rbac-role.yaml
+kubectl apply -f rbac-rolebinding.yaml

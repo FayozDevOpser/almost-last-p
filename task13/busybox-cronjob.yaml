@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: busybox-cronjob
+  namespace: p-fayoz
+spec:
+  schedule: "* * * * *"  # Har bir daqiqada ishlaydi
+  jobTemplate:
+    spec:
+      completions: 10
+      parallelism: 2
+      backoffLimit: 2
+      template:
+        spec:
+          nodeSelector:
+            cron: job
+          containers:
+          - name: busybox
+            image: busybox
+            command: ["/bin/sh", "-c", "echo My POD_IP is $POD_IP"]
+            env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          restartPolicy: Never

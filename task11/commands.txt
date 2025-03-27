@@ -1,0 +1,5 @@
+kubectl create daemonset nginx-daemonset \
+  --namespace=p-fayoz \
+  --image=nginx \
+  --port=80
+

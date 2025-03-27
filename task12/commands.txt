@@ -1,0 +1,7 @@
+kubectl create secret generic secret-info \
+  --from-literal=ENVIRONMENT=production \
+  --from-literal=LOG_LEVEL=info \
+  --from-literal=GRPC_PORT=50051 \
+  --namespace=p-fayoz \
+  --dry-run=client -o yaml > secret-info.yaml
+kubectl apply -f secret-info.yaml

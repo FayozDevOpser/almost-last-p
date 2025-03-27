@@ -1,0 +1,20 @@
+# ServiceAccount yaratish
+kubectl create serviceaccount node-lister --dry-run=client -o yaml > node-sa.yaml
+
+#ClusterRole yaratish (Node'larni list qilish uchun)
+kubectl create clusterrole node-list-role \
+  --verb=list \
+  --resource=nodes \
+  --dry-run=client -o yaml > node-clusterrole.yaml
+
+#ClusterRoleBinding yaratish (ServiceAccount'ni ClusterRole bilan bog‘lash)
+kubectl create clusterrolebinding node-list-binding \
+  --clusterrole=node-list-role \
+  --serviceaccount=default:node-lister \
+  --dry-run=client -o yaml > node-clusterrolebinding.yaml
+
+#YAML fayllarni qo‘llash
+kubectl apply -f node-sa.yaml
+kubectl apply -f node-clusterrole.yaml
+kubectl apply -f node-clusterrolebinding.yaml
+

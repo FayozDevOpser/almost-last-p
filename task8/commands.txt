@@ -1,0 +1,6 @@
+kubectl create deployment frontend-application \
+  --image=nvrbckdown/something:v1 \
+  --port=80 \
+  -n p-fayoz \
+  --dry-run=client -o yaml > frontend-deployment.yaml
+kubectl apply -f frontend-deployment.yaml

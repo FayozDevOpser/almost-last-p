@@ -1,0 +1,3 @@
+NAME          READY   STATUS    RESTARTS   AGE     IP              NODE    NOMINATED NODE   READINESS GATES
+redis-pod-1   1/1     Running   0          4m3s    10.233.68.34    node4   <none>           <none>
+redis-pod-2   1/1     Running   0          3m54s   10.233.68.117   node4   <none>           <none>

@@ -1,0 +1,6 @@
+kubectl run redis-pod-1 --image=redis --restart=Never --port=6379 -n p-fayoz --dry-run=client -o yaml > redis-pod1.yaml
+kubectl run redis-pod-2 --image=redis --restart=Never --port=6379 -n p-fayoz --dry-run=client -o yaml > redis-pod2.yaml
+kubectl label nodes node1 redis=true
+kubectl apply -f redis-pod1.yaml -n p-fayoz
+kubectl apply -f redis-pod2.yaml -n p-fayoz
+kubectl get pods -n p-fayoz -o wide > output.txt

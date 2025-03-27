@@ -1,0 +1,7 @@
+kubectl expose deployment frontend-application \
+  --type=ClusterIP \
+  --port=80 \
+  --target-port=80 \
+  -n p-fayoz \
+  --name=frontend-service
+ kubectl expose deployment flask-application-2   --type=ClusterIP   --port=80   --target-port=5000   -n p-fayoz   --name=flask-service-2
